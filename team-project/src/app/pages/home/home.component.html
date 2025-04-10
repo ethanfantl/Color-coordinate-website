@@ -1,1 +1,23 @@
-<p>home works!</p>
+<h2>Enter the following information please</h2>
+
+<div class="input-group">
+  <label for="rowsInput">Rows:</label>
+  <input type="number" id="rowsInput" #rowsInputElement step="1"/>
+</div>
+
+
+<div class="input-group">
+    <label for="colsInput">Columns:</label>
+    <input type="number" id="colsInput" #colsInputElement step="1"     />
+</div>
+
+<div class="input-group">
+    <label for="colorsInput">Colors:</label>
+    <input type="number" id="colorsInput" #colorsInputElement step="1"/>
+</div>
+
+<button type="button" (click)="generateTables(rowsInputElement.value, colsInputElement.value, colorsInputElement.value)">
+    Generate Tables
+</button>
+
+<hr/>
