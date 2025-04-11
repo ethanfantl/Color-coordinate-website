@@ -1,7 +1,8 @@
 .navbar a {
     text-decoration: none;
     color: white;
-    margin-right: 15px;
+    margin-right: 0.1%;
+    margin-left: 15px;
 }
 .navbar a:hover {
     color: #030303;
