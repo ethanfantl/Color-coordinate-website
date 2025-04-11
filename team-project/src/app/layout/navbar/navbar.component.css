@@ -1,10 +1,31 @@
-.navbar a {
-    text-decoration: none;
-    color: white;
-    margin-right: 0.1%;
-    margin-left: 15px;
-}
-.navbar a:hover {
-    color: #030303;
-    font-weight: bold;
+#navbar {
+    li {
+        float: left;
+    }
+    li a:hover {
+        background-color: #030303;
+        color: white;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    a {
+        display: block;
+        text-align: center;
+        font-family: inherit;
+        font-size: inherit;
+        padding: 10px;
+        background-color: #FFBE46;
+        border: 1px solid #FFC85A;
+        color:white;
+    }
+    a:link {
+        text-decoration: none;
+    }
+    image{
+        width: 20px;
+    }
 }
