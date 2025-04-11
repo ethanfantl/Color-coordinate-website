@@ -1,17 +1,24 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
 
   constructor(private snackBar: MatSnackBar) {}
   errorMessage: string = ""
-  showTables: boolean = false;
+  showTables: boolean = true;
+  colorTable: { selected: boolean; color: string }[] = [];
+  selectedRow: number = 0;
+
+  availableColors: string[] = ['Red', 'Orange', 'Yellow', 'Green', 
+    'Blue', 'Purple', 'Grey', 'Brown', 'Black', 'Teal'];
 
   ROW_MIN = 1;
   ROW_MAX = 1000;
@@ -79,7 +86,6 @@ export class HomeComponent {
   generateTables(rowsStr: string, colsStr: string, colorsStr: string): void {
 
     this.errorMessage = '';
-    this.showTables = false;
     let isFormValid = true;
     isFormValid = this.checkRows(rowsStr) && this.checkColors(colorsStr) && this.checkColumns(colsStr);
 
@@ -89,6 +95,8 @@ export class HomeComponent {
         verticalPosition:  'top',
         horizontalPosition: 'center'
       });
+      this.createTables(rowsStr, colsStr, colorsStr);
+      this.showTables = true;
     } else {
         this.snackBar.open(this.errorMessage, "Close", {
           duration: 2000,
@@ -100,5 +108,38 @@ export class HomeComponent {
   }
   // NOW ACTUALLY GENERATE THE TABLES
 
+  createTables(rowsStr: string, colsStr: string, colorsStr: string): void {
+    const colorCount = Number(colorsStr);
+    this.colorTable = [];
+
+    const tempColors = this.availableColors.slice(0, colorCount);
+
+    for(let i = 0; i < colorCount; i++) {
+      this.colorTable.push({
+        selected: i === 0, color: tempColors[i]
+      });
+    }
+    this.selectedRow = 0;
+  }
+
+  onSelectRow(index: number): void {
+    this.selectedRow = index;
+    this.colorTable.forEach((row, i) => {
+      row.selected = i === index;
+    })
+  }
+
+  onColorChange(index: number, newColor: string): void {
+    const selectedColor = this.colorTable.map(row => row.color);
+    const isDuplicate = selectedColor.includes(newColor) && this.colorTable[index].color !== newColor;
+
+    if(!isDuplicate){
+      this.colorTable[index].color = newColor;
+    }
+  }
+
+  isColorTaken(color: string, currentIndex: number): boolean {
+    return this.colorTable.some((row, idx) => row.color === color && idx !== currentIndex);
+  }
 
 }
