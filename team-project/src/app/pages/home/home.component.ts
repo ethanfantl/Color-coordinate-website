@@ -15,6 +15,8 @@ export class HomeComponent {
   errorMessage: string = ""
   showTables: boolean = true;
   colorTable: { selected: boolean; color: string }[] = [];
+  rowList: { dummy: number}[] = [];
+  colList: { dummy: number}[] = [];
   selectedRow: number = 0;
 
   availableColors: string[] = ['Red', 'Orange', 'Yellow', 'Green', 
@@ -120,6 +122,20 @@ export class HomeComponent {
       });
     }
     this.selectedRow = 0;
+
+    const rowCount = Number(rowsStr);
+    for(let i = 0; i <= rowCount; i++) {
+      this.rowList.push({
+        dummy: 0,
+      });
+    }
+
+    const colCount = Number(colsStr);
+    for(let i = 0; i <= colCount; i++) {
+      this.colList.push({
+        dummy: 0,
+      });
+    }
   }
 
   onSelectRow(index: number): void {

@@ -43,6 +43,16 @@
             </tr>
         </tbody>
     </table>
+    <br><br>
+    <table style="width: 100%; border: 1px solid;">
+        <tbody>
+            <tr *ngFor="let row of rowList; let i = index">
+                <td *ngFor="let row of colList; let i = index" style= "border: 1px solid;">
+                    A
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <p *ngIf="showTables && colorTable.length === 0">Table is empty!</p>
 <hr/>
