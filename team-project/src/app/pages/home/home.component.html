@@ -22,10 +22,10 @@
 </button>
 
 <div *ngIf="showTables">
-    <table style="width: 100%;">
+    <table style="width: 100%; border: 1px solid;">
         <tbody>
             <tr *ngFor="let row of colorTable; let i = index">
-                <td style="width: 20%;">
+                <td style="width: 20%; border: 1px solid;">
                     <input
                         type="radio"
                         name="rowSelect"
@@ -37,8 +37,8 @@
                 </select>
 
                 </td>
-                <td style="width: 80%;">
-                    <!-- Nothing for now -->
+                <td style="width: 80%; border: 1px solid;">
+                    
                 </td>
             </tr>
         </tbody>
