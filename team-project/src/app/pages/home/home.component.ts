@@ -125,21 +125,23 @@ export class HomeComponent {
   onSelectRow(index: number): void {
     this.selectedRow = index;
     this.colorTable.forEach((row, i) => {
-      row.selected = i === index;
+      row.selected = i == index;
     })
   }
 
   onColorChange(index: number, newColor: string): void {
     const selectedColor = this.colorTable.map(row => row.color);
-    const isDuplicate = selectedColor.includes(newColor) && this.colorTable[index].color !== newColor;
-
+    const isDuplicate = true;
+    //selectedColor.includes(newColor) || this.colorTable[index].color == newColor;
     if(!isDuplicate){
-      this.colorTable[index].color = newColor;
+      this.colorTable[index].color = "newColor";
     }
+
+    
   }
 
   isColorTaken(color: string, currentIndex: number): boolean {
-    return this.colorTable.some((row, idx) => row.color === color && idx !== currentIndex);
+    return this.colorTable.some((row, idx) => row.color == color && idx !== currentIndex);
   }
 
 }
