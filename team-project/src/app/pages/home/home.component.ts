@@ -13,7 +13,7 @@ export class HomeComponent {
 
   constructor(private snackBar: MatSnackBar) {}
   errorMessage: string = ""
-  showTables: boolean = true;
+  showTables: boolean = false;
   colorTable: { selected: boolean; color: string }[] = [];
   selectedRow: number = 0;
 
@@ -158,7 +158,7 @@ export class HomeComponent {
   generateExcelArray(lengthString: string): string[] {
     let length: number = Number(lengthString);
     let headers: string[] = [];
-    for (let i = 0; i <= length; i++) {
+    for (let i = 1; i <= length; i++) {
         headers.push(this.convertIndexToExcelFormat(i));
     }
     return headers;
@@ -166,7 +166,7 @@ export class HomeComponent {
   getColumnNumbers(lengthString: string): number[] {
     let length: number = Number(lengthString);
     let arrayOfNumbers: number[] = [];
-    for (let i =0; i <= length; i++){
+    for (let i =0; i < length; i++){
       arrayOfNumbers.push(i);
     }
     return arrayOfNumbers;
@@ -180,7 +180,7 @@ export class HomeComponent {
     return arrayOfNumbers;
   }
   createTableClickAnnouncement(rowNumber: number, colNumber:number) {
-    this.snackBar.open((this.convertIndexToExcelFormat(colNumber)).toString() + (rowNumber+1).toString(), "Close", {
+    this.snackBar.open((this.convertIndexToExcelFormat(colNumber+1)).toString() + (rowNumber+1).toString(), "Close", {
       duration: 2000,
       verticalPosition:  'top',
       horizontalPosition: 'center'
