@@ -158,4 +158,47 @@ export class HomeComponent {
     return this.colorTable.some((row, idx) => row.color === color && idx !== currentIndex);
   }
 
+  convertIndexToExcelFormat(index: number): string {
+    let toBeReturned = '';
+    let dividor = index + 1;
+    let leftOver: number;
+
+    while (dividor > 0) {
+        leftOver = (dividor - 1) % 26;
+        toBeReturned = String.fromCharCode(65 + dividor) + toBeReturned;
+        dividor = Math.floor((dividor - leftOver) / 26);
+    }
+    return toBeReturned;
+}
+  generateExcelArray(lengthString: string): string[] {
+    let length: number = Number(lengthString);
+    let headers: string[] = [];
+    for (let i = 0; i < length; i++) {
+        headers.push(this.convertIndexToExcelFormat(i));
+    }
+    return headers;
+  }
+  getColumnNumbers(lengthString: string): number[] {
+    let length: number = Number(lengthString);
+    let arrayOfNumbers: number[] = [];
+    for (let i =0; i < length; i++){
+      arrayOfNumbers.push(i);
+    }
+    return arrayOfNumbers;
+  }
+  getRowNumbers(lengthString: string): number[] {
+    let length: number = Number(lengthString);
+    let arrayOfNumbers: number[] = [];
+    for (let i =0; i < length; i++){
+      arrayOfNumbers.push(i);
+    }
+    return arrayOfNumbers;
+  }
+  createTableClickAnnouncement(rowNumber: number, colNumber:number) {
+    this.snackBar.open((this.convertIndexToExcelFormat(colNumber)).toString() + (rowNumber+1).toString(), "Close", {
+      duration: 2000,
+      verticalPosition:  'top',
+      horizontalPosition: 'center'
+    });
+  }
 }

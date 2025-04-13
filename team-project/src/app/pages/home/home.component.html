@@ -55,5 +55,33 @@
     </table>
 </div>
 <p *ngIf="showTables && colorTable.length === 0">Table is empty!</p>
+
+
+<!-- TABLE  2 -->
+<table *ngIf="showTables" class="table-2">
+    <thead>
+        <tr>
+        <th></th> <!-- The empty one -->
+        <th *ngFor="let AThroughZ of generateExcelArray(colsInputElement.value)">
+          {{AThroughZ}}
+        </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let rowNumber of getRowNumbers(rowsInputElement.value)">
+        <td class="row-header">{{rowNumber + 1}}</td>
+        <td *ngFor="let colNumber of getColumnNumbers(colsInputElement.value)"
+            class="Individualcell"
+            (click)="createTableClickAnnouncement(rowNumber, colNumber)">
+        </td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+
+
 <hr/>
 </body>
