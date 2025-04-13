@@ -141,23 +141,24 @@ export class HomeComponent {
   isColorTaken(color: string, currentIndex: number): boolean {
     return this.colorTable.some((row, idx) => row.color === color && idx !== currentIndex);
   }
-
+  //PAST Z this breaks DOWN
   convertIndexToExcelFormat(index: number): string {
-    let toBeReturned = '';
-    let dividor = index + 1;
-    let leftOver: number;
-
-    while (dividor > 0) {
-        leftOver = (dividor - 1) % 26;
-        toBeReturned = String.fromCharCode(65 + dividor) + toBeReturned;
-        dividor = Math.floor((dividor - leftOver) / 26);
+    let result = "";
+    let tempNum = index;
+  
+    while (tempNum > 0) {
+      const remainder = (tempNum - 1) % 26;
+      const char = String.fromCharCode(65 + remainder);
+      result = char + result;
+      tempNum = Math.floor((tempNum - 1) / 26);
     }
-    return toBeReturned;
+  
+    return result;
 }
   generateExcelArray(lengthString: string): string[] {
     let length: number = Number(lengthString);
     let headers: string[] = [];
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i <= length; i++) {
         headers.push(this.convertIndexToExcelFormat(i));
     }
     return headers;
@@ -165,7 +166,7 @@ export class HomeComponent {
   getColumnNumbers(lengthString: string): number[] {
     let length: number = Number(lengthString);
     let arrayOfNumbers: number[] = [];
-    for (let i =0; i < length; i++){
+    for (let i =0; i <= length; i++){
       arrayOfNumbers.push(i);
     }
     return arrayOfNumbers;
