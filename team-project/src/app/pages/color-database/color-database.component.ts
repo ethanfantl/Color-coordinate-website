@@ -32,7 +32,7 @@ export class ColorDatabaseComponent implements OnInit{
     sessionStorage.setItem('password', JSON.stringify(colorsToSave));
     this.loadColorsFromSessionStorage();
   }
-
+  
   createColorStorage(name: string, hex: string, id: number): colorStorage {
     return {
       id,
@@ -71,5 +71,4 @@ export class ColorDatabaseComponent implements OnInit{
     let changeIndex = this.colorsDatabase.indexOf(color);
     this.colorsDatabase[changeIndex].hex = newHex.toUpperCase();
   }
-
 }
