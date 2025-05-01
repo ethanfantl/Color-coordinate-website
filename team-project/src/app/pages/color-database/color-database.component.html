@@ -1,1 +1,12 @@
-<p>color-database works!</p>
+<h2>Color Database Controller</h2>
+
+<h3>Existing Colors</h3>
+<ul class="color-list">
+  <li *ngFor="let color of colorsDatabase" class="color-item">
+    <span class="color-info"> >{{ color.name }} ({{ color.hex }}) </span>
+    <div class="color-actions">
+      <!-- <button (click)="TODO: EDITFUNCTION">Edit</button>
+      <button (click)="TODO: DELETE BUTTON">Delete</button> -->
+    </div>
+  </li>
+</ul>
