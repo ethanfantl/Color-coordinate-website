@@ -1,0 +1,13 @@
+<body>
+<h2>Fill in the following information to add a color:</h2>
+
+<div class="input-group">
+    <input type="text" id="colorAddName" placeholder="Color Name" #nameInputElement step="1"/>
+    <input type="text" id="colorAddHex" placeholder="Hexadecimal Code" pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" #hexInputElement step="1"/>
+    <input type="number" id="colorAddID" placeholder="Color ID" #idInputElement step="1"/>
+</div>
+<button type="button" (click)="addColor()">
+    Add Color
+</button>
+
+</body>
