@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -84,7 +85,6 @@ export class HomeComponent {
   }
 
   generateTables(rowsStr: string, colsStr: string, colorsStr: string): void {
-
     this.errorMessage = '';
     let isFormValid = true;
     isFormValid = this.checkRows(rowsStr) && this.checkColors(colorsStr) && this.checkColumns(colsStr);
@@ -130,11 +130,19 @@ export class HomeComponent {
   }
 
   onColorChange(index: number, newColor: string): void {
-    const selectedColor = this.colorTable.map(row => row.color);
-    const isDuplicate = selectedColor.includes(newColor) && this.colorTable[index].color !== newColor;
-
-    if(!isDuplicate){
+    if (this.colorTable[index].color === newColor) {
+      return;
+    }
+    const isDuplicate = this.colorTable.some((row, idx) => row.color === newColor && idx !== index);
+  
+    if (!isDuplicate) {
       this.colorTable[index].color = newColor;
+    } else {
+      this.snackBar.open("Color already taken", "Close", {
+        duration: 2000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      });
     }
   }
 

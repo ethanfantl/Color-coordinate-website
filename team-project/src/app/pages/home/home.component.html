@@ -32,9 +32,14 @@
                         [checked]="row.selected"
                         (change)="onSelectRow(i)"
                 />
-                <select #colorSelect (change)="onColorChange(i, colorSelect.value)">
-                    <option *ngFor="let color of availableColors" [value]="color">{{ color }}</option>
-                </select>
+                <select [(ngModel)]="row.color" (change)="onColorChange(i, row.color)">
+                    <option
+                      *ngFor="let color of availableColors"
+                      [value]="color"
+                      [disabled]="isColorTaken(color, i)">
+                      {{ color }}
+                    </option>
+                  </select>
 
                 </td>
                 <td style="width: 80%; border: 1px solid;">
