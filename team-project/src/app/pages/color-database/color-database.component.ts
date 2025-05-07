@@ -55,20 +55,24 @@ export class ColorDatabaseComponent implements OnInit{
       this.colorsDatabase.push(this.createColorStorage(name, hex.toUpperCase(), Number(id)));
   
     }
+    this.saveColorsToSessionStorage(this.colorsDatabase);
   }
 
   removeColor(color: colorStorage): void {
     let removeIndex = this.colorsDatabase.indexOf(color);
     this.colorsDatabase.splice(removeIndex, 1);
+    this.saveColorsToSessionStorage(this.colorsDatabase);
   }
 
   changeName(color: colorStorage, newName: string): void {
     let changeIndex = this.colorsDatabase.indexOf(color);
     this.colorsDatabase[changeIndex].name = newName;
+    this.saveColorsToSessionStorage(this.colorsDatabase);
   }
 
   changeHex(color: colorStorage, newHex: string): void {
     let changeIndex = this.colorsDatabase.indexOf(color);
     this.colorsDatabase[changeIndex].hex = newHex.toUpperCase();
+    this.saveColorsToSessionStorage(this.colorsDatabase);
   }
 }
