@@ -7,6 +7,5 @@ import { ColorDatabaseComponent } from './pages/color-database/color-database.co
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'about', component: AboutComponent },
-    { path: 'color-database', component: ColorDatabaseComponent },
-    
+    { path: 'color-database', component: ColorDatabaseComponent }
 ];

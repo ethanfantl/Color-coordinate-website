@@ -1,0 +1,21 @@
+header {
+    background-color: #123458;
+    color: #F1EFEC;
+}
+
+body {
+    background-color: #123458;
+    color: #F1EFEC;
+    margin-left: 15px;
+}
+
+input:invalid {
+    border: 2px solid red;
+}
+
+input:placeholder-shown {
+    border: 2px solid black;
+}
+input:valid {
+    border: 2px solid black;
+}

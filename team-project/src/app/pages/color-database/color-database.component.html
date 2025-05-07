@@ -3,10 +3,31 @@
 <h3>Existing Colors</h3>
 <ul class="color-list">
   <li *ngFor="let color of colorsDatabase" class="color-item">
-    <span class="color-info"> >{{ color.name }} ({{ color.hex }}) </span>
-    <div class="color-actions">
-      <!-- <button (click)="TODO: EDITFUNCTION">Edit</button>
-      <button (click)="TODO: DELETE BUTTON">Delete</button> -->
-    </div>
+    <span class="color-info"> >{{ color.name }} ({{ color.hex }}) 
+      <button type="button" (click)="removeColor(color)">
+        Remove
+      </button>
+      <input type="text" id="colorAddName" placeholder="Color Name" #nameChangeElement step="1" required/>
+      <button type="button" (click)="changeName(color, nameChangeElement.value)">
+        Change Name
+      </button>
+      <input type="text" id="colorAddHex" placeholder="HexCode (#xxxxxx)" pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" #hexChangeElement step="1" required/>
+      <button type="button" (click)="changeHex(color, hexChangeElement.value)">
+        Change HexCode
+      </button>
+    </span>
   </li>
 </ul>
+<h2>Fill in the following information to add a color:</h2>
+  <div class="input-group">
+    <form #myForm="ngForm">
+      <input type="text" id="colorAddName" placeholder="Color Name" #nameInputElement step="1" required/>
+      <input type="text" id="colorAddHex" placeholder="HexCode (#xxxxxx)" pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" #hexInputElement step="1" required/>
+      <input type="number" id="colorAddID" placeholder="Color ID" #idInputElement step="1" required/>
+      <button [disabled]="myForm.invalid" type="button" (click)="addColor(nameInputElement.value, hexInputElement.value, idInputElement.value)">
+        Add Color
+      </button>
+    </form>
+  </div>
+<!-- TODO: Error messages + check for exclusivity -->
+<!-- TODO: Propagate changes to Color Table -->
