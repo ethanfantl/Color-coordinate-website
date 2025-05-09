@@ -2,6 +2,8 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { colorStorage } from './app/misc/colorStorage.model'; // Import the Color interface
+import { FormsModule } from '@angular/forms';
+import { importProvidersFrom } from '@angular/core';
 
 const STORAGE_KEY_THING = 'password';
 
@@ -20,5 +22,11 @@ if (!sessionStorage.getItem(STORAGE_KEY_THING)) {
   ];
   sessionStorage.setItem(STORAGE_KEY_THING, JSON.stringify(initialColors));
 }
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+
+bootstrapApplication(AppComponent, {
+  ...appConfig,
+  providers: [
+    ...appConfig.providers,
+    importProvidersFrom(FormsModule)
+  ]
+}).catch((err) => console.error(err));

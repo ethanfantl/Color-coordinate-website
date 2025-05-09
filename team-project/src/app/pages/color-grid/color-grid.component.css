@@ -1,0 +1,38 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td {
+    border: 1px solid #999;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  select {
+    margin-top: 5px;
+  }
+  
+  .coord {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  @media print {
+    select {
+      display: none !important;
+    }
+  
+    td {
+      background-color: white !important;
+      color: black;
+    }
+  
+    .coord {
+      display: block;
+      font-weight: bold;
+    }
+  }
+  
