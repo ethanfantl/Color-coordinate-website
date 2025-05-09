@@ -1,0 +1,14 @@
+<table>
+    <tr *ngFor="let row of grid; let i = index">
+      <td *ngFor="let cell of row; let j = index" [ngStyle]="{ 'background-color': getColorHex(cell.selectedColorId) }">
+        <div>
+          <select [(ngModel)]="cell.selectedColorId">
+            <option [ngValue]="null">Select</option>
+            <option *ngFor="let color of colors" [ngValue]="color.id">{{ color.name }}</option>
+          </select>
+          <div class="coord">{{ getCoordinate(i, j) }}</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <button onclick="window.print()" class="print-btn">Print</button>
