@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { colorStorage } from '../../misc/colorStorage.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-color-grid',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './color-grid.component.html',
   styleUrls: ['./color-grid.component.css']
 })
