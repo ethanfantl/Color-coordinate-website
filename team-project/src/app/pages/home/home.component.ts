@@ -23,6 +23,8 @@ export class HomeComponent {
   availableColors: string[] = ['Red', 'Orange', 'Yellow', 'Green', 
     'Blue', 'Purple', 'Grey', 'Brown', 'Black', 'Teal'];
 
+  cellColors: string[][] = [];
+
   ROW_MIN = 1;
   ROW_MAX = 1000;
   COL_MIN = 1;
@@ -112,7 +114,17 @@ export class HomeComponent {
 
   createTables(rowsStr: string, colsStr: string, colorsStr: string): void {
     const colorCount = Number(colorsStr);
+    
     this.colorTable = [];
+    this.cellColors = [];
+
+    for(let i = 0; i < Number(rowsStr); i++) {
+      const row: string[] = [];
+      for(let j = 0; j < Number(colsStr); j++) {
+        row.push("");
+      }
+      this.cellColors.push(row);
+    }
 
     const tempColors = this.availableColors.slice(0, colorCount);
 
@@ -136,6 +148,11 @@ export class HomeComponent {
         dummy: 0,
       });
     }
+  }
+
+  colorCell(row: number, col: number): void {
+    const selectedColor = this.colorTable[this.selectedRow].color;
+    this.cellColors[row][col] = selectedColor;
   }
 
   onSelectRow(index: number): void {

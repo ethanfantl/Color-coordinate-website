@@ -73,12 +73,12 @@
         </tr>
     </thead>
     <tbody>
-
-        <tr *ngFor="let rowNumber of getRowNumbers(rowsInputElement.value)">
+        <tr *ngFor="let rowNumber of getRowNumbers(rowsInputElement.value); let rowIndex = index">
         <td class="row-header">{{rowNumber + 1}}</td>
-        <td *ngFor="let colNumber of getColumnNumbers(colsInputElement.value)"
+        <td *ngFor="let colNumber of getColumnNumbers(colsInputElement.value); let colIndex = index"
             class="Individualcell"
-            (click)="createTableClickAnnouncement(rowNumber, colNumber)">
+            [style.backgroundColor]="cellColors[rowIndex][colIndex]"
+            (click)="colorCell(rowIndex, colIndex)">
         </td>
         </tr>
 
